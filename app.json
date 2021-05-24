@@ -1,4 +1,5 @@
 {
   "name": "ReactNativeBackgroundTask",
-  "displayName": "ReactNativeBackgroundTask"
+  "displayName": "ReactNativeBackgroundTask",
+  "taskName": "TaskService"
 }

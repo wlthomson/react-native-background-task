@@ -2,6 +2,9 @@ package com.reactnativebackgroundtask;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
@@ -24,8 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+          packages.add(new AlarmManagerPackage());
           return packages;
         }
 
@@ -45,6 +47,9 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+
+    TaskServiceReceiver taskServiceReceiver = new TaskServiceReceiver();
+    this.registerReceiver(taskServiceReceiver, new IntentFilter("android.intent.action.taskservicereceiver"));
   }
 
   /**
