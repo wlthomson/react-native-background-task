@@ -1,8 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Image, StyleSheet } from 'react-native';
 
 const App = () => {
-  const uri = "https://cdn2.thecatapi.com/images/e11.jpg";
+  const uri = useSelector(store => store.url);
   return <Image style={styles.image} source={{ uri }}/>
 };
 
