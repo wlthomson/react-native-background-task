@@ -11,11 +11,11 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
-
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
         @Override
@@ -48,8 +48,9 @@ public class MainApplication extends Application implements ReactApplication {
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
 
+    // Register task service receiver with RN context
     TaskServiceReceiver taskServiceReceiver = new TaskServiceReceiver();
-    this.registerReceiver(taskServiceReceiver, new IntentFilter("android.intent.action.taskservicereceiver"));
+    this.registerReceiver(taskServiceReceiver, new IntentFilter("com.reactnativebackgroundtask.TaskServiceAction"));
   }
 
   /**

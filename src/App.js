@@ -1,15 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Image, StyleSheet, NativeModules } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 
-const { AlarmManagerModule } = NativeModules;
+import AlarmManagerModule from './AlarmManager';
 
-const App = () => {
+export const App = () => {
   React.useEffect(() => {
-    AlarmManagerModule.setRepeating('android.intent.action.taskservicereceiver', 60000);
+    AlarmManagerModule.setRepeating('com.reactnativebackgroundtask.TaskServiceAction', 60000);
   }, [])
 
   const uri = useSelector(store => store.url);
+
   return <Image style={styles.image} source={{ uri }}/>
 };
 
